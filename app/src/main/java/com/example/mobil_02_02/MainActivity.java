@@ -35,10 +35,52 @@ public class MainActivity extends AppCompatActivity {
 
         Button myButton = (Button) view;
         String inputString = myButton.getText().toString();
-        resultTextView.setText(inputString);
         Log.d("button", inputString);
 
+        switch (inputString){
+            case "=" : resultTextView.setText(calculate(resultTextView.getText().toString()));break;
+            case "CE": resultTextView.setText("0"); break;
+            case "+":
+            case "-":
+            case "*":
+            case "/": if ("+-*/".indexOf(
+                    resultTextView.getText().toString().charAt(
+                            resultTextView.getText().toString().length()-1
+                    )) > -1) break;
+            default : resultTextView.append(myButton.getText());
+        }
     }
 
+    private String calculate(String expression)
+    {
+        try {
+            String op1Str = expression.split("[+\\-*/]")[0];
+            int op1 = Integer.parseInt(op1Str);
+            String op2Str = expression.split("[+\\-*/]")[1];
+            int op2 = Integer.parseInt(op2Str);
+
+            char operator = expression.charAt(op1Str.length());
+            Log.d("exp", op1 + "_" + operator + op2);
+
+            switch (operator) {
+                case '+':
+                    return "" + (op1 + op2);
+                case '-':
+                    return "" + (op1 - op2);
+                case '*':
+                    return "" + (op1 * op2);
+                case '/':
+                    return "" + (op1 / op2);
+                default:
+                    return "";
+
+            }
+        }
+        catch (Exception e)
+        {
+            Log.d("Exception", e.toString());
+            return "";
+        }
+    }
 
 }
