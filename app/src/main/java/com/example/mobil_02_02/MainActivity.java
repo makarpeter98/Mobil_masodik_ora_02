@@ -1,6 +1,7 @@
 package com.example.mobil_02_02;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,4 +22,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    public void handleButtonClick(View view) {
+    }
+
+
 }
